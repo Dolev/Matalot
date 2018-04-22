@@ -6,15 +6,28 @@ class CircularInt {
     public:
        int cur;
        CircularInt(int s,int e);
+       CircularInt& operator+=(int num);
        friend ostream& operator<< (ostream& os, const CircularInt& c);
-       friend const& operator<< (const CircularInt& c);
+       CircularInt& operator++(int) ;
+       const CircularInt operator-();
+       friend CircularInt operator-(const int& num, CircularInt& c);
+       
+      
+     
+
        
 
 };
-inline ostream& operator<< (ostream& os, const CircularInt& c) {
+ 
+   
+   inline ostream& operator<< (ostream& os, const CircularInt& c) {
     os << c.cur << endl;
     return os;
-}
-inline const CircularInt operator+=(const CircularInt& c,int num) {
-    return CircularInt();
-}
+    }
+   inline CircularInt operator-(const int& num, CircularInt& c){// int-hour
+   c.cur=((num+12)-c.cur)%c.e;
+   return c;
+   }
+
+
+
