@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#include "CircularInt.cpp"
+#include "CircularInt.hpp"
 
 
 int main() {
