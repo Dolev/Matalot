@@ -8,8 +8,20 @@ CircularInt::CircularInt(int s,int e){
 }
 
 
-/*CircularInt& operator+=(int num) const{
-    this->s+=num;
-    return this->s;
-}
-*/
+CircularInt& CircularInt:: operator+=(int num) {
+      this->cur+=num;
+      cur=cur%e;
+        return *this;
+    }
+ CircularInt& CircularInt:: operator++(int num) {
+    cur++;
+     return *this;
+ }
+//   CircularInt::CircularInt& operator++(int) { 
+//       this->cur++;
+//         return *this;
+//     }
+      const CircularInt CircularInt:: operator-()  {
+        return CircularInt{e-cur,e};
+    }
+    
