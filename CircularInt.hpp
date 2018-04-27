@@ -133,7 +133,7 @@ class CircularInt {
   }
   inline const CircularInt operator/ (const int& num, CircularInt& c){
     if(c.cur==0){throw string(" eror:we can't divide in zero!");}
-    if(num%c.cur!=0){throw string(" eror");}
+    
     int d=(c.e-c.s)+1;
     CircularInt cpy(c);
     cpy.cur=(num/cpy.cur)%d;
