@@ -173,6 +173,7 @@ CircularInt& CircularInt:: operator *=(int num){
  if(c.cur==0){throw string("eror:c.cur=0");}
  if(cur%c.cur!=0){throw string("eror:cur/c.cur not int");}
  cur=cur/c.cur;
+ fix();
  return *this;
  }
  
