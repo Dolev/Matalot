@@ -93,6 +93,7 @@ CircularInt& CircularInt:: operator *=(int num){
     CircularInt cpy(*this);
     int d=(e-s)+1;
     cpy.cur=(cpy.cur/c.cur)%d;
+    if(cpy.cur<=0){cpy.cur+=d;}
     return cpy;
  }
  const CircularInt CircularInt:: operator%(const CircularInt& c){
@@ -116,28 +117,29 @@ CircularInt& CircularInt:: operator *=(int num){
         
  //_______________________________________________________________________hour and num
  
-  const CircularInt CircularInt:: operator/(int num){
+  const CircularInt CircularInt:: operator/(const int num){
   if(num==0){throw string("eror:we can't divide in zero!");}
   if(cur%num!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(num)+"="+to_string(cur)); }
   CircularInt cpy(*this);
   int d=(e-s)+1;
   cpy.cur=(cpy.cur/num)%d;
+  if(cpy.cur<=0){cpy.cur+=d;}
   return cpy;
   }
  
-  const CircularInt CircularInt::operator+(int num){//cur/number
+  const CircularInt CircularInt::operator+(const int num){//cur/number
   CircularInt cpy(*this);
   cpy.cur+=num;
   cpy.fix();
   return cpy;
   }
-  const CircularInt CircularInt::operator-(int num){//cur/number
+  const CircularInt CircularInt::operator-(const int num){//cur/number
   CircularInt cpy(*this);
   cpy.cur-=num;
   cpy.fix();
   return cpy;
   }
-  const CircularInt CircularInt::operator*(int num){//cur/number
+  const CircularInt CircularInt::operator*(const int num){//cur/number
   CircularInt cpy(*this);
   cpy.cur*=num;
   cpy.fix();
