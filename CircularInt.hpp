@@ -8,25 +8,27 @@ class CircularInt {
        int cur;
        CircularInt(int s,int e);
        
-       const CircularInt operator++(int) ;//++postfix
+      const CircularInt operator++(int) ;//++postfix
        CircularInt& operator++();//++perfix
        const CircularInt operator--(int);//--postfix
        CircularInt& operator--();//--perfix
        
-       CircularInt operator*( const CircularInt& c);//a*b
-       CircularInt operator+(const CircularInt& c);//hour+hour
-       CircularInt operator%(const CircularInt& c);
-       const CircularInt operator-();//e-cur
-       CircularInt operator /(const CircularInt& c);//a/b
-       CircularInt operator-(const CircularInt& c);
-       CircularInt& operator=(const CircularInt& c);//a=b
-       CircularInt& operator=(int num);//a=num;
+       const CircularInt operator*( const CircularInt& c);//a*b
+       const CircularInt operator+(const CircularInt& c);//hour+hour
+       const CircularInt operator-(const CircularInt& c);
+       const CircularInt operator /(const CircularInt& c);//a/b
        
        const CircularInt operator+(int num);//cur+num
        const CircularInt operator/(int num);//cur/number
        const CircularInt operator-(int num);//cur/number
        const CircularInt operator*(int num);//cur/number
        
+
+       const CircularInt operator%(const CircularInt& c);
+       const CircularInt operator-();//e-cur
+       CircularInt& operator=(const CircularInt& c);//a=b
+       CircularInt& operator=(int num);//a=num;
+    
        CircularInt& operator *=(int num);//(number*cur)%e
        CircularInt& operator+=(int num);//cur+number
        CircularInt& operator-=(int num);//cur-number
