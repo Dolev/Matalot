@@ -62,15 +62,18 @@ CircularInt& CircularInt:: operator *=(int num){
  }
  CircularInt& CircularInt:: operator++() {//perfix
     cur++;
+    fix();
      return *this;
  }
  const CircularInt CircularInt:: operator--(int num) {//postfix
     CircularInt cpy(*this);
     --cur;
+    fix();
      return cpy;
  }
  CircularInt& CircularInt:: operator--() {//perfix
     cur--;
+    fix();
      return *this;
  }
  
