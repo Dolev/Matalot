@@ -16,7 +16,7 @@ class CircularInt {
        const CircularInt operator*( const CircularInt& c);//a*b
        const CircularInt operator+(const CircularInt& c);//hour+hour
        const CircularInt operator-(const CircularInt& c);
-       const CircularInt operator /(const CircularInt& c);//a/b
+       const CircularInt operator/(const CircularInt& c);//a/b
        
        const CircularInt operator+(int num);//cur+num
        const CircularInt operator/(int num);//cur/number
@@ -53,6 +53,8 @@ class CircularInt {
        friend const CircularInt operator+ (const int& num, CircularInt& c); 
        friend const CircularInt operator* (const int& num, CircularInt& c);
        friend const CircularInt operator/ (const int& num, CircularInt& c);
+       
+       
        
        
        friend bool operator==(const CircularInt& c1, const CircularInt& c2);//a=b?
@@ -132,9 +134,10 @@ class CircularInt {
   inline const CircularInt operator/ (const int& num, CircularInt& c){
     if(c.cur==0){throw string(" eror:we can't divide in zero!");}
     if(num%c.cur!=0){throw string(" eror");}
-    c.cur=num/c.cur;
-    c.fix();
-    return c;
+    int d=(c.e-c.s)+1;
+    CircularInt cpy(c);
+    cpy.cur=(num/cpy.cur)%d;
+    return cpy;
   }
    
    
