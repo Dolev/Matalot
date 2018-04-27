@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+#include<string>
 class CircularInt {
     private:
        int s,e;
