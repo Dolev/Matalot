@@ -18,10 +18,10 @@ class CircularInt {
        const CircularInt operator-(const CircularInt& c);
        const CircularInt operator/(const CircularInt& c);//a/b
        
-       const CircularInt operator+(int num);//cur+num
-       const CircularInt operator/(int num);//cur/number
-       const CircularInt operator-(int num);//cur/number
-       const CircularInt operator*(int num);//cur/number
+       const CircularInt operator+(const int num);//cur+num
+       const CircularInt operator/(const int num);//cur/number
+       const CircularInt operator-(const int num);//cur/number
+       const CircularInt operator*(const int num);//cur/number
        
 
        const CircularInt operator%(const CircularInt& c);
@@ -137,6 +137,7 @@ class CircularInt {
     int d=(c.e-c.s)+1;
     CircularInt cpy(c);
     cpy.cur=(num/cpy.cur)%d;
+    if (cpy.cur<=0){cpy.cur+=d;}
     return cpy;
   }
    
