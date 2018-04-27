@@ -46,7 +46,8 @@ CircularInt& CircularInt:: operator *=(int num){
  CircularInt& CircularInt::operator/=(int num){
      if(num==0){throw string("eror:we can't divide in zero!");}
      if(cur%num!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(num)+"="+to_string(cur)); }
-     cur=cur/num;
+     cur/=num;
+     fix();
      return *this;
  }
  
@@ -107,8 +108,11 @@ CircularInt& CircularInt:: operator *=(int num){
  
  
  //_______________________________________________________________________
- const CircularInt CircularInt:: operator-()  {
-        return CircularInt{e-cur,e};
+    CircularInt CircularInt:: operator-()  {
+    CircularInt cpy(*this); 
+    cpy.cur = cpy.e - cpy.cur;
+    cpy.fix();
+    return cpy;
         }
         
  //_______________________________________________________________________hour and num
