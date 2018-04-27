@@ -50,7 +50,7 @@ class CircularInt {
        
        
        friend CircularInt operator-(const int& num, CircularInt& c);
-    //   friend CircularInt operator+ (const int& num, CircularInt& c); 
+       friend CircularInt operator+ (const int& num, CircularInt& c); 
     //   friend CircularInt operator* (const int& num, CircularInt& c);
     //   friend CircularInt operator/ (const int& num, CircularInt& c);
        
@@ -119,11 +119,11 @@ class CircularInt {
 //   c.fix();
 //   return c;
 //   }
-//   inline CircularInt operator+ (const int& num, CircularInt& c){
-//     c.cur+=num;
-//     c.fix();
-//     return c;
-//   }
+  inline CircularInt operator+ (const int& num, CircularInt& c){
+    c.cur+=num;
+    c.fix();
+    return c;
+  }
 //   inline CircularInt operator* (const int& num, CircularInt& c){
 //     c.cur*=num;
 //     c.fix();
