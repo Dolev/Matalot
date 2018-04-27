@@ -133,11 +133,22 @@ class CircularInt {
     return c;
   }
   inline const CircularInt operator/(const int& num, CircularInt& c){
+    // CircularInt cpy(c);
+    // int d=(c.e-c.s)+1;
+    // cpy.cur=(num/cpy.cur)%d;
+    // if (cpy.cur<=0){cpy.cur+=d;}
+    // return cpy;
     CircularInt cpy(c);
-    int d=(c.e-c.s)+1;
-    cpy.cur=(num/cpy.cur)%d;
-    if (cpy.cur<=0){cpy.cur+=d;}
-    return cpy;
+            int y, sum =0;
+            y = c.e-c.s+1;
+            sum = (num/c.cur) % y;
+            if(sum < c.s){
+            cpy.cur = sum+y;
+            }
+            else{
+                cpy.cur = sum;
+            }
+                return cpy;
   }
    
    
