@@ -8,27 +8,25 @@ class CircularInt {
        int cur;
        CircularInt(int s,int e);
        
-      const CircularInt operator++(int) ;//++postfix
+       const CircularInt operator++(int) ;//++postfix
        CircularInt& operator++();//++perfix
        const CircularInt operator--(int);//--postfix
        CircularInt& operator--();//--perfix
        
-       const CircularInt operator*( const CircularInt& c);//a*b
-       const CircularInt operator+(const CircularInt& c);//hour+hour
-       const CircularInt operator-(const CircularInt& c);
-       const CircularInt operator /(const CircularInt& c);//a/b
+       CircularInt operator*( const CircularInt& c);//a*b
+       CircularInt operator+(const CircularInt& c);//hour+hour
+       CircularInt operator%(const CircularInt& c);
+       const CircularInt operator-();//e-cur
+       CircularInt operator /(const CircularInt& c);//a/b
+       CircularInt operator-(const CircularInt& c);
+       CircularInt& operator=(const CircularInt& c);//a=b
+       CircularInt& operator=(int num);//a=num;
        
        const CircularInt operator+(int num);//cur+num
        const CircularInt operator/(int num);//cur/number
        const CircularInt operator-(int num);//cur/number
        const CircularInt operator*(int num);//cur/number
        
-
-       const CircularInt operator%(const CircularInt& c);
-       const CircularInt operator-();//e-cur
-       CircularInt& operator=(const CircularInt& c);//a=b
-       CircularInt& operator=(int num);//a=num;
-    
        CircularInt& operator *=(int num);//(number*cur)%e
        CircularInt& operator+=(int num);//cur+number
        CircularInt& operator-=(int num);//cur-number
@@ -64,18 +62,15 @@ class CircularInt {
        friend bool operator == ( const int& i,const CircularInt& c1);
        friend bool operator <= ( const int& i,const CircularInt& c1);
        friend bool operator >= ( const int& i,const CircularInt& c1);
-       
+       friend bool operator < ( const int& i,const CircularInt& c1);
+       friend bool operator > ( const int& i,const CircularInt& c1);
        //CircularInt and int 
        friend bool operator == ( const CircularInt& c1,const int& i);
        friend bool operator != ( const CircularInt& c1,const int& i);
        friend bool operator >= ( const CircularInt& c1,const int& i);
        friend bool operator <= ( const CircularInt& c1,const int& i);
-       
-
-       
-   
-      
-     
+       friend bool operator > ( const CircularInt& c1,const int& i);
+       friend bool operator < ( const CircularInt& c1,const int& i);
 
        
 
@@ -102,7 +97,10 @@ class CircularInt {
    c.cur=((num+12)-c.cur)%c.e;
    return c;
    }
-   
+    inline bool operator!(const CircularInt& c1){
+      return(!c1.cur);
+  }
+ //hour and hour___________________________________________________________________________________
    inline bool operator==(const CircularInt& c1, const CircularInt& c2) {
     
     return ((c1.s==c2.s)&&(c1.e==c2.e)&&(c1.cur==c2.cur));
@@ -128,10 +126,6 @@ class CircularInt {
       return(c1.cur<=c2.cur);
   }
   
-  inline bool operator!(const CircularInt& c1){
-      return(!c1.cur);
-  }
-  
   inline bool operator&&(const CircularInt& c1, const CircularInt& c2){
       return(c1.cur&&c2.cur);
   }
@@ -150,8 +144,14 @@ class CircularInt {
           return(i<=c1.cur);
    }
    inline bool operator >= ( const int& i,const CircularInt& c1){
-          return(i>=c1.cur);
-   }
+         return(i>=c1.cur);
+   } 
+   inline bool operator > ( const int& i,const CircularInt& c1){
+         return(i>c1.cur);
+   } 
+   inline bool operator < ( const int& i,const CircularInt& c1){
+         return(i<c1.cur);
+   } 
    //CircularInt and int_____________________________________________________________________________________ 
    inline bool operator != ( const CircularInt& c1,const int& i){
           return(c1.cur!=i);
@@ -165,7 +165,12 @@ class CircularInt {
     inline bool operator >= ( const CircularInt& c1,const int& i){
           return(c1.cur>=i);
    }
+    inline bool operator > ( const CircularInt& c1,const int& i){
+          return(c1.cur>i);
+   }
+    inline bool operator < ( const CircularInt& c1,const int& i){
+          return(c1.cur<i);
+   }
+   
    //______________________________________________________________________________________________________
    
-  
-
