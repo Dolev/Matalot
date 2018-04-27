@@ -131,11 +131,9 @@ class CircularInt {
     c.fix();
     return c;
   }
-  inline const CircularInt operator/ (const int& num, CircularInt& c){
-    if(c.cur==0){throw string(" eror:we can't divide in zero!");}
-    
-    int d=(c.e-c.s)+1;
+  inline const CircularInt operator/(const int& num, CircularInt& c){
     CircularInt cpy(c);
+    int d=(c.e-c.s)+1;
     cpy.cur=(num/cpy.cur)%d;
     if (cpy.cur<=0){cpy.cur+=d;}
     return cpy;
