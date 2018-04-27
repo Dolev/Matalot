@@ -1,428 +1,188 @@
 #include<iostream>
+#include "CircularInt.hpp"
+#include<string>
 using namespace std;
-class CircularInt {
-    private:
-       int s,e;
-       void fix();
-    public:
-       int cur;
-       CircularInt(int s,int e);
-       
-       const CircularInt operator++(int) ;//++postfix
-       CircularInt& operator++();//++perfix
-       const CircularInt operator--(int);//--postfix
-       CircularInt& operator--();//--perfix
-       
-       const CircularInt operator*( const CircularInt& c);//a*b
-       const CircularInt operator+(const CircularInt& c);//hour+hour
-       const CircularInt operator-(const CircularInt& c);
-       const CircularInt operator /(const CircularInt& c);//a/b
-       
-       const CircularInt operator+(int num);//cur+num
-       const CircularInt operator/(int num);//cur/number#include<iostream>
-using namespace std;
-class CircularInt {
-    private:
-       int s,e;
-       void fix();
-    public:
-       int cur;
-       CircularInt(int s,int e);
-       
-       const CircularInt operator++(int) ;//++postfix
-       CircularInt& operator++();//++perfix
-       const CircularInt operator--(int);//--postfix
-       CircularInt& operator--();//--perfix
-       
-       const CircularInt operator*( const CircularInt& c);//a*b
-       const CircularInt operator+(const CircularInt& c);//hour+hour
-       const CircularInt operator-(const CircularInt& c);
-       const CircularInt operator /(const CircularInt& c);//a/b
-       
-       const CircularInt operator+(int num);//cur+num
-       const CircularInt operator/(int num);//cur/number
-       const CircularInt operator-(int num);//cur/number
-       const CircularInt operator*(int num);//cur/number
-       
+CircularInt::CircularInt(int s,int e){
+    this->s=s;
+    this->e=e;
+    this->cur=s;
+}
 
-       const CircularInt operator%(const CircularInt& c);
-       CircularInt operator-();//e-cur
-       CircularInt& operator=(const CircularInt& c);//a=b
-       CircularInt& operator=(int num);//a=num;
-       
-      
-       
-       CircularInt& operator *=(int num);//(number*cur)%e
-       CircularInt& operator+=(int num);//cur+number
-       CircularInt& operator-=(int num);//cur-number
-       CircularInt& operator/=(int num);//cur/number
-       
-       
-       CircularInt& operator-=(const CircularInt& c);//this cur-c.cur
-       CircularInt& operator+=(const CircularInt& c);//this cur+c.cur
-       CircularInt& operator*=(const CircularInt& c);//this cur*c.cur
-       CircularInt& operator/=(const CircularInt& c);//this cur/c.cur
-       
-       
-       
-       //friend function
-       friend ostream& operator<< (ostream& os, const CircularInt& c);//output
-       friend istream& operator>> (istream& input,  CircularInt& c);  // (cin)
-       
-       
-       friend const CircularInt operator-(const int& num, CircularInt& c);
-       friend const CircularInt operator+ (const int& num, CircularInt& c); 
-       friend const CircularInt operator* (const int& num, CircularInt& c);
-       friend const CircularInt operator/ (const int& num, CircularInt& c);
-       
-       
-       friend bool operator==(const CircularInt& c1, const CircularInt& c2);//a=b?
-       friend bool operator!=(const CircularInt& c1, const CircularInt& c2);//a!=b?
-       friend bool operator>(const CircularInt& c1, const CircularInt& c2);//a>b?
-       friend bool operator<(const CircularInt& c1, const CircularInt& c2);//a<b
-       friend bool operator>=(const CircularInt& c1, const CircularInt& c2);//a>=b
-       friend bool operator<=(const CircularInt& c1, const CircularInt& c2);//a<=b
-       friend bool operator!(const CircularInt& c1);//!a
-       friend bool operator&&(const CircularInt& c1, const CircularInt& c2);//a&&b
-       friend bool operator||(const CircularInt& c1, const CircularInt& c2);//a||b
-       
-       // int and CircularInt
-       friend bool operator != ( const int& i,const CircularInt& c1);
-       friend bool operator == ( const int& i,const CircularInt& c1);
-       friend bool operator <= ( const int& i,const CircularInt& c1);
-       friend bool operator >= ( const int& i,const CircularInt& c1);
-       friend bool operator < ( const int& i,const CircularInt& c1);
-       friend bool operator > ( const int& i,const CircularInt& c1);
-       //CircularInt and int 
-       friend bool operator == ( const CircularInt& c1,const int& i);
-       friend bool operator != ( const CircularInt& c1,const int& i);
-       friend bool operator >= ( const CircularInt& c1,const int& i);
-       friend bool operator <= ( const CircularInt& c1,const int& i);
-       friend bool operator > ( const CircularInt& c1,const int& i);
-       friend bool operator < ( const CircularInt& c1,const int& i);
-       
+void CircularInt::fix(){ //function to fixthe cur in the range
 
-       
+    int y = e-s+1;
 
-       
-   
-      
-     
+    if(cur>= s && cur<= e){
 
-       
+        return;
 
-};
- 
-   
-   inline ostream& operator<< (ostream& os, const CircularInt& c) {
-    os << c.cur << endl;
-    return os;
     }
-    inline istream& operator>> (istream& input,  CircularInt& c){ // (cin)
-    int x;
-        input >> x ;
-        if(x<c.s || x>c.e){
-    throw string("The number "+to_string(x)+" is not in the range )");
-        }
-        else{
-        c.cur=x;           
-        }
-        return input;
+
+    while(cur < s) cur += y;
+
+    while(cur > e) cur -= y;
+
+}
+
+
+CircularInt& CircularInt:: operator+=(int num) {
+      cur=cur+num;
+      fix();
+        return *this;
     }
     
-   inline const CircularInt operator-(const int& num, CircularInt& c){// int-hour
-   c.cur-=num;
-   c.fix();
-   return c;
-   }
-   inline const CircularInt operator+(const int& num, CircularInt& c){// int-hour
-   c.cur+=num;
-   c.fix();
-   return c;
-   }
-   inline const CircularInt operator*(const int& num, CircularInt& c){// int-hour
-   c.cur*=num;
-   c.fix();
-   return c;
-   }
-   inline const CircularInt operator/(const int& num, CircularInt& c){// int-hour
-   if(num==0){throw string("eror:we can't divide in zero!");}
-   if(c.cur%num!=0){throw string("There is no number x in {"+to_string(c.s)+","+to_string(c.e)+"} such that x*"+to_string(num)+"="+to_string(c.cur)); }
-   c.cur/=num;
-   c.fix();
-   return c;
+CircularInt& CircularInt:: operator-=(int num) {
+     cur=cur-num;
+     fix();
+    return *this;
+    }
+    
+CircularInt& CircularInt:: operator *=(int num){
+     cur=cur*num;
+     fix();
+     return *this;
  }
-  
-   
-   
-   inline bool operator==(const CircularInt& c1, const CircularInt& c2) {
-    
-    return ((c1.s==c2.s)&&(c1.e==c2.e)&&(c1.cur==c2.cur));
-   }
-   
-  inline bool operator!=(const CircularInt& c1, const CircularInt& c2){
-      return((c1.s!=c2.s)||(c1.e!=c2.e)||(c1.cur!=c2.cur));
-   }
-  
-  inline bool operator>(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur>c2.cur);
-  }
-  
-  inline bool operator<(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur<c2.cur);
-  }
-  
-  inline bool operator>=(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur>=c2.cur);
-  }
-  
-  inline bool operator<=(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur<=c2.cur);
-  }
-  
-  inline bool operator!(const CircularInt& c1){
-      return(!c1.cur);
-  }
-  
-  inline bool operator&&(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur&&c2.cur);
-  }
-  
-  inline bool operator||(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur||c2.cur);
-  }
-   //int and CircularInt____________________________________________________________________________________
-   inline bool operator != ( const int& i,const CircularInt& c1){
-          return(i!=c1.cur);
-   }
-   inline bool operator == ( const int& i,const CircularInt& c1){
-          return(i==c1.cur);
-   }
-   inline bool operator <= ( const int& i,const CircularInt& c1){
-          return(i<=c1.cur);
-   }
-   inline bool operator >= ( const int& i,const CircularInt& c1){
-         return(i>=c1.cur);
-   } 
-   inline bool operator > ( const int& i,const CircularInt& c1){
-         return(i>c1.cur);
-   } 
-   inline bool operator < ( const int& i,const CircularInt& c1){
-         return(i<c1.cur);
-   } 
-   //CircularInt and int_____________________________________________________________________________________ 
-   inline bool operator != ( const CircularInt& c1,const int& i){
-          return(c1.cur!=i);
-   }
-    inline bool operator == ( const CircularInt& c1,const int& i){
-          return(c1.cur==i);
-   }
-    inline bool operator <= ( const CircularInt& c1,const int& i){
-          return(c1.cur<=i);
-   }
-    inline bool operator >= ( const CircularInt& c1,const int& i){
-          return(c1.cur>=i);
-   }
-    inline bool operator > ( const CircularInt& c1,const int& i){
-          return(c1.cur>i);
-   }
-    inline bool operator < ( const CircularInt& c1,const int& i){
-          return(c1.cur<i);
-   }
-
-
-
-
-
-       const CircularInt operator-(int num);//cur/number
-       const CircularInt operator*(int num);//cur/number
-       
-
-       const CircularInt operator%(const CircularInt& c);
-       CircularInt operator-();//e-cur
-       CircularInt& operator=(const CircularInt& c);//a=b
-       CircularInt& operator=(int num);//a=num;
-       
-      
-       
-       CircularInt& operator *=(int num);//(number*cur)%e
-       CircularInt& operator+=(int num);//cur+number
-       CircularInt& operator-=(int num);//cur-number
-       CircularInt& operator/=(int num);//cur/number
-       
-       
-       CircularInt& operator-=(const CircularInt& c);//this cur-c.cur
-       CircularInt& operator+=(const CircularInt& c);//this cur+c.cur
-       CircularInt& operator*=(const CircularInt& c);//this cur*c.cur
-       CircularInt& operator/=(const CircularInt& c);//this cur/c.cur
-       
-       
-       
-       //friend function
-       friend ostream& operator<< (ostream& os, const CircularInt& c);//output
-       friend istream& operator>> (istream& input,  CircularInt& c);  // (cin)
-       
-       
-       friend const CircularInt operator-(const int& num, CircularInt& c);
-       friend const CircularInt operator+ (const int& i, CircularInt& c); 
-       friend const CircularInt operator* (const int& i, CircularInt& c);
-       friend const CircularInt operator/ (const int& i, CircularInt& c);
-       
-       
-       friend bool operator==(const CircularInt& c1, const CircularInt& c2);//a=b?
-       friend bool operator!=(const CircularInt& c1, const CircularInt& c2);//a!=b?
-       friend bool operator>(const CircularInt& c1, const CircularInt& c2);//a>b?
-       friend bool operator<(const CircularInt& c1, const CircularInt& c2);//a<b
-       friend bool operator>=(const CircularInt& c1, const CircularInt& c2);//a>=b
-       friend bool operator<=(const CircularInt& c1, const CircularInt& c2);//a<=b
-       friend bool operator!(const CircularInt& c1);//!a
-       friend bool operator&&(const CircularInt& c1, const CircularInt& c2);//a&&b
-       friend bool operator||(const CircularInt& c1, const CircularInt& c2);//a||b
-       
-       // int and CircularInt
-       friend bool operator != ( const int& i,const CircularInt& c1);
-       friend bool operator == ( const int& i,const CircularInt& c1);
-       friend bool operator <= ( const int& i,const CircularInt& c1);
-       friend bool operator >= ( const int& i,const CircularInt& c1);
-       friend bool operator < ( const int& i,const CircularInt& c1);
-       friend bool operator > ( const int& i,const CircularInt& c1);
-       //CircularInt and int 
-       friend bool operator == ( const CircularInt& c1,const int& i);
-       friend bool operator != ( const CircularInt& c1,const int& i);
-       friend bool operator >= ( const CircularInt& c1,const int& i);
-       friend bool operator <= ( const CircularInt& c1,const int& i);
-       friend bool operator > ( const CircularInt& c1,const int& i);
-       friend bool operator < ( const CircularInt& c1,const int& i);
-       
-
-       
-
-       
-   
-      
-     
-
-       
-
-};
  
-   
-   inline ostream& operator<< (ostream& os, const CircularInt& c) {
-    os << c.cur << endl;
-    return os;
-    }
-    inline istream& operator>> (istream& input,  CircularInt& c){ // (cin)
-    int x;
-        input >> x ;
-        if(x<c.s || x>c.e){
-    throw string("The number "+to_string(x)+" is not in the range )");
-        }
-        else{
-        c.cur=x;           
-        }
-        return input;
-    }
-    
-   inline const CircularInt operator-(const int& num, CircularInt& c){// int-hour
-   c.cur-=num;
-   c.fix();
-   return c;
-   }
-   inline const CircularInt operator+(const int& num, CircularInt& c){// int-hour
-   c.cur+=num;
-   c.fix();
-   return c;
-   }
-   inline const CircularInt operator*(const int& num, CircularInt& c){// int-hour
-   c.cur*=num;
-   c.fix();
-   return c;
-   }
-   inline const CircularInt operator/(const int& num, CircularInt& c){// int-hour
-   if(num==0){throw string("eror:we can't divide in zero!");}
-   if(c.cur%num!=0){throw string("There is no number x in {"+to_string(c.s)+","+to_string(c.e)+"} such that x*"+to_string(num)+"="+to_string(c.cur)); }
-   c.cur/=num;
-   c.fix();
-   return c;
+ CircularInt& CircularInt::operator/=(int num){
+     if(num==0){throw string("eror:we can't divide in zero!");}
+     if(cur%num!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(num)+"="+to_string(cur)); }
+     cur/=num;
+     fix();
+     return *this;
  }
-  
-   
-   
-   inline bool operator==(const CircularInt& c1, const CircularInt& c2) {
+ 
+ //_______________________________________________________________________
+
     
-    return ((c1.s==c2.s)&&(c1.e==c2.e)&&(c1.cur==c2.cur));
-   }
-   
-  inline bool operator!=(const CircularInt& c1, const CircularInt& c2){
-      return((c1.s!=c2.s)||(c1.e!=c2.e)||(c1.cur!=c2.cur));
-   }
-  
-  inline bool operator>(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur>c2.cur);
+ const CircularInt CircularInt:: operator++(int num) {//postfix
+    CircularInt cpy(*this);
+    ++cur;
+    fix();
+     return cpy;
+ }
+ CircularInt& CircularInt:: operator++() {//perfix
+    cur++;
+     return *this;
+ }
+ const CircularInt CircularInt:: operator--(int num) {//postfix
+    CircularInt cpy(*this);
+    --cur;
+     return cpy;
+ }
+ CircularInt& CircularInt:: operator--() {//perfix
+    cur--;
+     return *this;
+ }
+ 
+ //_______________________________________________________________________hour and hour
+ 
+ const CircularInt CircularInt:: operator+(const CircularInt& c){
+     CircularInt cpy(*this);
+     cpy.cur+=c.cur;
+     cpy.fix();
+     return cpy;
+ }
+  const CircularInt CircularInt:: operator*( const CircularInt& c){
+     CircularInt cpy(*this);
+     cpy.cur*=c.cur;
+     cpy.fix();
+     return cpy;
+ }
+ const CircularInt CircularInt:: operator/(const CircularInt& c){
+    if(c.cur==0){throw string("eror:we can't divide in zero!");}
+    if(cur%c.cur!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(c.cur)+"="+to_string(cur)); }
+    CircularInt cpy(*this);
+    cpy.cur/=c.cur;
+    cpy.fix();
+    return cpy;
+ }
+ const CircularInt CircularInt:: operator%(const CircularInt& c){
+     return CircularInt{cur%c.cur,e};
+ }
+ const CircularInt CircularInt:: operator-(const CircularInt& c){
+      CircularInt cpy(*this);
+     cpy.cur-=c.cur;
+     cpy.fix();
+     return cpy;
+ }
+ 
+ 
+ //_______________________________________________________________________
+    CircularInt CircularInt:: operator-()  {
+    CircularInt cpy(*this); 
+    cpy.cur = cpy.e - cpy.cur;
+    cpy.fix();
+    return cpy;
+        }
+        
+ //_______________________________________________________________________hour and num
+ 
+  const CircularInt CircularInt:: operator/(int num){
+  if(num==0){throw string("eror:we can't divide in zero!");}
+  if(cur%num!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(num)+"="+to_string(cur)); }
+
+  return CircularInt{cur/num,e};
   }
-  
-  inline bool operator<(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur<c2.cur);
+ 
+  const CircularInt CircularInt::operator+(int num){//cur/number
+  CircularInt cpy(*this);
+  cpy.cur+=num;
+  cpy.fix();
+  return cpy;
   }
-  
-  inline bool operator>=(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur>=c2.cur);
+  const CircularInt CircularInt::operator-(int num){//cur/number
+  CircularInt cpy(*this);
+  cpy.cur-=num;
+  cpy.fix();
+  return cpy;
   }
-  
-  inline bool operator<=(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur<=c2.cur);
+  const CircularInt CircularInt::operator*(int num){//cur/number
+  CircularInt cpy(*this);
+  cpy.cur*=num;
+  cpy.fix();
+  return cpy;
   }
-  
-  inline bool operator!(const CircularInt& c1){
-      return(!c1.cur);
-  }
-  
-  inline bool operator&&(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur&&c2.cur);
-  }
-  
-  inline bool operator||(const CircularInt& c1, const CircularInt& c2){
-      return(c1.cur||c2.cur);
-  }
-   //int and CircularInt____________________________________________________________________________________
-   inline bool operator != ( const int& i,const CircularInt& c1){
-          return(i!=c1.cur);
-   }
-   inline bool operator == ( const int& i,const CircularInt& c1){
-          return(i==c1.cur);
-   }
-   inline bool operator <= ( const int& i,const CircularInt& c1){
-          return(i<=c1.cur);
-   }
-   inline bool operator >= ( const int& i,const CircularInt& c1){
-         return(i>=c1.cur);
-   } 
-   inline bool operator > ( const int& i,const CircularInt& c1){
-         return(i>c1.cur);
-   } 
-   inline bool operator < ( const int& i,const CircularInt& c1){
-         return(i<c1.cur);
-   } 
-   //CircularInt and int_____________________________________________________________________________________ 
-   inline bool operator != ( const CircularInt& c1,const int& i){
-          return(c1.cur!=i);
-   }
-    inline bool operator == ( const CircularInt& c1,const int& i){
-          return(c1.cur==i);
-   }
-    inline bool operator <= ( const CircularInt& c1,const int& i){
-          return(c1.cur<=i);
-   }
-    inline bool operator >= ( const CircularInt& c1,const int& i){
-          return(c1.cur>=i);
-   }
-    inline bool operator > ( const CircularInt& c1,const int& i){
-          return(c1.cur>i);
-   }
-    inline bool operator < ( const CircularInt& c1,const int& i){
-          return(c1.cur<i);
-   }
+ 
+//_______________________________________________________________________
+ 
+ CircularInt& CircularInt:: operator+=(const CircularInt& c){//this cur+c.cur
+     cur=cur+c.cur;
+     fix();
+     return *this;
+ }
+ 
+ CircularInt& CircularInt:: operator-=(const CircularInt& c){//this cur-c.cur
+     cur=cur-c.cur;
+     fix();
+     return *this;
+ }
+ 
+ CircularInt& CircularInt::operator*=(const CircularInt& c){//this cur*c.cur
+     cur=cur*c.cur;
+     fix();
+     return *this;
+}
 
 
-
-
+ CircularInt& CircularInt:: operator/=(const CircularInt& c){//this cur/c.cur
+ if(c.cur==0){throw string("eror:c.cur=0");}
+ if(cur%c.cur!=0){throw string("eror:cur/c.cur not int");}
+ cur=cur/c.cur;
+ return *this;
+ }
+ 
+ 
+//_______________________________________________________________________
+    CircularInt& CircularInt:: operator=(const CircularInt& c){
+     e=c.e;
+     s=c.s;
+     cur=c.cur;
+     return *this;
+    }
+    
+    CircularInt& CircularInt::operator=(int num){
+     cur=num;
+     fix();
+     return *this;
+    }
+ 
