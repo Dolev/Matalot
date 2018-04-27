@@ -9,24 +9,17 @@ CircularInt::CircularInt(int s,int e){
 }
 
 void CircularInt::fix(){ //function to fixthe cur in the range
-
     int y = e-s+1;
-
     if(cur>= s && cur<= e){
-
         return;
-
     }
-
     while(cur < s) cur += y;
-
     while(cur > e) cur -= y;
-
 }
 
 
 CircularInt& CircularInt:: operator+=(int num) {
-      cur=cur+num;
+      cur+=num;
       fix();
         return *this;
     }
@@ -46,8 +39,11 @@ CircularInt& CircularInt:: operator *=(int num){
  CircularInt& CircularInt::operator/=(int num){
      if(num==0){throw string("eror:we can't divide in zero!");}
      if(cur%num!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(num)+"="+to_string(cur)); }
-     cur/=num;
-     fix();
+     int d=(s-e)+1;
+     cur=(cur/num)%d;
+     if(cur<s){
+      cur+=d;
+     }
      return *this;
  }
  
@@ -74,7 +70,7 @@ CircularInt& CircularInt:: operator *=(int num){
  CircularInt& CircularInt:: operator--() {//perfix
     cur--;
     fix();
-     return *this;
+    return *this;
  }
  
  //_______________________________________________________________________hour and hour
@@ -95,8 +91,8 @@ CircularInt& CircularInt:: operator *=(int num){
     if(c.cur==0){throw string("eror:we can't divide in zero!");}
     if(cur%c.cur!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(c.cur)+"="+to_string(cur)); }
     CircularInt cpy(*this);
-    cpy.cur/=c.cur;
-    cpy.fix();
+    int d=(e-s)+1;
+    cpy.cur=(cpy.cur/c.cur)%d;
     return cpy;
  }
  const CircularInt CircularInt:: operator%(const CircularInt& c){
@@ -124,8 +120,8 @@ CircularInt& CircularInt:: operator *=(int num){
   if(num==0){throw string("eror:we can't divide in zero!");}
   if(cur%num!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(num)+"="+to_string(cur)); }
   CircularInt cpy(*this);
-  cpy.cur/=num;
-  cpy.fix();
+  d=(e-s)+1;
+  cpy.cur=(cpy.cut/num)%d;
   return cpy;
   }
  
