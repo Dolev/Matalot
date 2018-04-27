@@ -46,21 +46,23 @@ class CircularInt {
        
        
        friend CircularInt operator-(const int& num, CircularInt& c);
+       friend bool operator!(const CircularInt& c1);//!a
+    //hour+hour_____________________________________________________________________________________________________________________
        friend bool operator==(const CircularInt& c1, const CircularInt& c2);//a=b?
        friend bool operator!=(const CircularInt& c1, const CircularInt& c2);//a!=b?
        friend bool operator>(const CircularInt& c1, const CircularInt& c2);//a>b?
        friend bool operator<(const CircularInt& c1, const CircularInt& c2);//a<b
        friend bool operator>=(const CircularInt& c1, const CircularInt& c2);//a>=b
        friend bool operator<=(const CircularInt& c1, const CircularInt& c2);//a<=b
-       friend bool operator!(const CircularInt& c1);//!a
        friend bool operator&&(const CircularInt& c1, const CircularInt& c2);//a&&b
        friend bool operator||(const CircularInt& c1, const CircularInt& c2);//a||b
-       
+    
        // int and CircularInt
        friend bool operator != ( const int& i,const CircularInt& c1);
        friend bool operator == ( const int& i,const CircularInt& c1);
        friend bool operator <= ( const int& i,const CircularInt& c1);
        friend bool operator >= ( const int& i,const CircularInt& c1);
+       
        //CircularInt and int 
        friend bool operator == ( const CircularInt& c1,const int& i);
        friend bool operator != ( const CircularInt& c1,const int& i);
