@@ -170,8 +170,9 @@ CircularInt& CircularInt:: operator *=(int num){
  CircularInt& CircularInt:: operator/=(const CircularInt& c){//this cur/c.cur
  if(c.cur==0){throw string("eror:c.cur=0");}
  if(cur%c.cur!=0){throw string("eror:cur/c.cur not int");}
- cur=cur/c.cur;
- fix();
+ int d=(e-s)+1;
+ cur=(cur/c.cur)%d;
+ if(cur<=s){cur+=d;}
  return *this;
  }
  
