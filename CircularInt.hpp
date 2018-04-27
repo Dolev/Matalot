@@ -56,7 +56,16 @@ class CircularInt {
        friend bool operator&&(const CircularInt& c1, const CircularInt& c2);//a&&b
        friend bool operator||(const CircularInt& c1, const CircularInt& c2);//a||b
        
-
+       // int and CircularInt
+       friend bool operator != ( const int& i,const CircularInt& c1);
+       friend bool operator == ( const int& i,const CircularInt& c1);
+       friend bool operator <= ( const int& i,const CircularInt& c1);
+       friend bool operator >= ( const int& i,const CircularInt& c1);
+       //CircularInt and int 
+       friend bool operator == ( const CircularInt& c1,const int& i);
+       friend bool operator != ( const CircularInt& c1,const int& i);
+       friend bool operator >= ( const CircularInt& c1,const int& i);
+       friend bool operator <= ( const CircularInt& c1,const int& i);
        
 
        
@@ -126,8 +135,33 @@ class CircularInt {
   inline bool operator||(const CircularInt& c1, const CircularInt& c2){
       return(c1.cur||c2.cur);
   }
+  //int and CircularInt____________________________________________________________________________________
+   inline bool operator != ( const int& i,const CircularInt& c1){
+          return(i!=c1.cur);
+   }
+   inline bool operator == ( const int& i,const CircularInt& c1){
+          return(i==c1.cur);
+   }
+   inline bool operator <= ( const int& i,const CircularInt& c1){
+          return(i<=c1.cur);
+   }
+   inline bool operator >= ( const int& i,const CircularInt& c1){
+          return(i>=c1.cur);
+   }
+   //CircularInt and int_____________________________________________________________________________________ 
+   inline bool operator != ( const CircularInt& c1,const int& i){
+          return(c1.cur!=i);
+   }
+    inline bool operator == ( const CircularInt& c1,const int& i){
+          return(c1.cur==i);
+   }
+    inline bool operator <= ( const CircularInt& c1,const int& i){
+          return(c1.cur<=i);
+   }
+    inline bool operator >= ( const CircularInt& c1,const int& i){
+          return(c1.cur>=i);
+   }
+   //______________________________________________________________________________________________________
    
-
-
-
+  
 
