@@ -49,7 +49,12 @@ class CircularInt {
        friend istream& operator>> (istream& input,  CircularInt& c);  // (cin)
        
        
-       friend CircularInt operator-(const int& num, CircularInt& c);
+       friend const CircularInt operator-(const int& num, CircularInt& c);
+       friend const CircularInt operator+ (const int& i, CircularInt& c); 
+       friend const CircularInt operator* (const int& i, CircularInt& c);
+       friend const CircularInt operator/ (const int& i, CircularInt& c);
+       
+       
        friend bool operator==(const CircularInt& c1, const CircularInt& c2);//a=b?
        friend bool operator!=(const CircularInt& c1, const CircularInt& c2);//a!=b?
        friend bool operator>(const CircularInt& c1, const CircularInt& c2);//a>b?
@@ -104,10 +109,30 @@ class CircularInt {
         return input;
     }
     
-   inline CircularInt operator-(const int& num, CircularInt& c){// int-hour
-   c.cur=((num+12)-c.cur)%c.e;
+   inline const CircularInt operator-(const int& num, CircularInt& c){// int-hour
+   c.cur-=num;
+   c.fix();
    return c;
    }
+   inline const CircularInt operator+(const int& num, CircularInt& c){// int-hour
+   c.cur+=num;
+   c.fix();
+   return c;
+   }
+   inline const CircularInt operator*(const int& num, CircularInt& c){// int-hour
+   c.cur*=num;
+   c.fix();
+   return c;
+   }
+   inline const CircularInt operator/(const int& num, CircularInt& c){// int-hour
+   if(num==0){throw string("eror:we can't divide in zero!");}
+   if(c.cur%num!=0){throw string("There is no number x in {"+to_string(c.s)+","+to_string(c.e)+"} such that x*"+to_string(num)+"="+to_string(c.cur)); }
+   c.cur/=num;
+   c.fix();
+   return c;
+ }
+  
+   
    
    inline bool operator==(const CircularInt& c1, const CircularInt& c2) {
     
