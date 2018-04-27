@@ -120,8 +120,8 @@ CircularInt& CircularInt:: operator *=(int num){
   if(num==0){throw string("eror:we can't divide in zero!");}
   if(cur%num!=0){throw string("There is no number x in {"+to_string(s)+","+to_string(e)+"} such that x*"+to_string(num)+"="+to_string(cur)); }
   CircularInt cpy(*this);
-  d=(e-s)+1;
-  cpy.cur=(cpy.cut/num)%d;
+  int d=(e-s)+1;
+  cpy.cur=(cpy.cur/num)%d;
   return cpy;
   }
  
