@@ -2,10 +2,12 @@
 #include "CircularInt.hpp"
 #include<string>
 using namespace std;
-CircularInt::CircularInt(int s,int e){
-    this->s=s;
-    this->e=e;
-    this->cur=s;
+CircularInt::CircularInt(int s2,int e2){
+ if(e2>s2){
+    s=s2;
+    e=e2;
+    cur=s;
+ }
 }
 
 void CircularInt::fix(){ //function to fixthe cur in the range
