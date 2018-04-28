@@ -97,13 +97,15 @@ class CircularInt {
  
    
    inline ostream& operator<< (ostream& os, const CircularInt& c) {
-    os << c.cur << endl;
-    return os;
+     int ret=c.cur;
+     return os<<to_string(ret);
+    // os << c.cur << endl;
+    // return os;
     }
     inline istream& operator>> (istream& input,  CircularInt& c){ // (cin)
     int x;
-        input >> x ;
-        if(x<c.s || x>c.e){
+    input>>x;
+    if(x<c.s || x>c.e){
     throw string("The number "+to_string(x)+" is not in the range )");
         }
         else{
@@ -113,9 +115,17 @@ class CircularInt {
     }
     
    inline const CircularInt operator-(const int& num, CircularInt& c){// int-hour
-   c.cur=num-c.cur;
-   c.fix();
-   return c;
+   CircularInt cpy(c);
+   int d=(c.e-c.s)+1;
+   c.cur=(num-c.cur)%d;
+   if(c.cur<=0){
+       c.cur+=d;
+   }
+   return cpy;
+   
+//   c.cur=num-c.cur;
+//   c.fix();
+//   return c;
    }
 //   inline CircularInt operator-(const int& num, CircularInt& c){// int-hour
 //   c.cur=num-c.cur;
@@ -123,14 +133,28 @@ class CircularInt {
 //   return c;
 //   }
   inline const CircularInt operator+ (const int& num, CircularInt& c){
-    c.cur+=num;
-    c.fix();
-    return c;
+    // c.cur+=num;
+    // c.fix();
+    // return c;
+    CircularInt cpy(c);
+   int d=(c.e-c.s)+1;
+   c.cur=(c.cur+num)%d;
+   if(c.cur<=0){
+       c.cur+=d;
+   }
+   return cpy;
   }
   inline const CircularInt operator* (const int& num, CircularInt& c){
-    c.cur*=num;
-    c.fix();
-    return c;
+    // c.cur*=num;
+    // c.fix();
+    // return c;
+    CircularInt cpy(c);
+   int d=(c.e-c.s)+1;
+   c.cur=(num*c.cur)%d;
+   if(c.cur<=0){
+       c.cur+=d;
+   }
+   return cpy;
   }
   inline const CircularInt operator/(const int& num, CircularInt& c){
     // CircularInt cpy(c);
