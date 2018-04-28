@@ -116,10 +116,10 @@ class CircularInt {
     
    inline const CircularInt operator-(const int& num, CircularInt& c){// int-hour
    CircularInt cpy(c);
-   int d=(c.e-c.s)+1;
-   c.cur=(num-c.cur)%d;
-   if(c.cur<c.s){
-       c.cur+=d;
+   int d=(cpy.e-cpy.s)+1;
+   cpy.cur=(num-cpy.cur)%d;
+   if(cpy.cur<cpy.s){
+       cpy.cur+=d;
    }
    return cpy;
    
@@ -137,10 +137,10 @@ class CircularInt {
     // c.fix();
     // return c;
     CircularInt cpy(c);
-   int d=(c.e-c.s)+1;
-   c.cur=(c.cur+num)%d;
-   if(c.cur<c.s){
-       c.cur+=d;
+   int d=(cpy.e-cpy.s)+1;
+   cpy.cur=(cpy.cur+num)%d;
+   if(cpy.cur<cpy.s){
+       cpy.cur+=d;
    }
    return cpy;
   }
@@ -149,10 +149,10 @@ class CircularInt {
     // c.fix();
     // return c;
     CircularInt cpy(c);
-   int d=(c.e-c.s)+1;
-   c.cur=(num*c.cur)%d;
-   if(c.cur<c.s){
-       c.cur+=d;
+   int d=(cpy.e-cpy.s)+1;
+   cpy.cur=(num*cpy.cur)%d;
+   if(cpy.cur<cpy.s){
+       cpy.cur+=d;
    }
    return cpy;
   }
@@ -164,9 +164,9 @@ class CircularInt {
     // return cpy;
     CircularInt cpy(c);
             int y, sum =0;
-            y = c.e-c.s+1;
+            y = cpy.e-cpy.s+1;
             sum = (num/c.cur) % y;
-            if(sum < c.s){
+            if(sum < cpy.s){
             cpy.cur = sum+y;
             }
             else{
