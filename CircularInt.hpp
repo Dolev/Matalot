@@ -118,7 +118,7 @@ class CircularInt {
    CircularInt cpy(c);
    int d=(c.e-c.s)+1;
    c.cur=(num-c.cur)%d;
-   if(c.cur<=0){
+   if(c.cur<c.s){
        c.cur+=d;
    }
    return cpy;
@@ -139,7 +139,7 @@ class CircularInt {
     CircularInt cpy(c);
    int d=(c.e-c.s)+1;
    c.cur=(c.cur+num)%d;
-   if(c.cur<=0){
+   if(c.cur<c.s){
        c.cur+=d;
    }
    return cpy;
@@ -151,7 +151,7 @@ class CircularInt {
     CircularInt cpy(c);
    int d=(c.e-c.s)+1;
    c.cur=(num*c.cur)%d;
-   if(c.cur<=0){
+   if(c.cur<c.s){
        c.cur+=d;
    }
    return cpy;
