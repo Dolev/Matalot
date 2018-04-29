@@ -14,15 +14,15 @@ class CircularInt {
        const CircularInt operator--(int);//--postfix
        CircularInt& operator--();//--perfix
        
-       const CircularInt operator*( const CircularInt& c);//a*b
+       const CircularInt operator*( const CircularInt& c);//hour*hour
        const CircularInt operator+(const CircularInt& c);//hour+hour
-       const CircularInt operator-(const CircularInt& c);
-       const CircularInt operator/(const CircularInt& c);//a/b
+       const CircularInt operator-(const CircularInt& c);//hour-hour
+       const CircularInt operator/(const CircularInt& c);//hour/hour
        
-       const CircularInt operator+(const int num);//cur+num
-       const CircularInt operator/(const int num);//cur/number
-       const CircularInt operator-(const int num);//cur/number
-       const CircularInt operator*(const int num);//cur/number
+       const CircularInt operator+(const int num);//hour+num
+       const CircularInt operator/(const int num);//hour/num
+       const CircularInt operator-(const int num);//hour-num
+       const CircularInt operator*(const int num);//hour*number
        
 
        const CircularInt operator%(const CircularInt& c);
@@ -45,15 +45,15 @@ class CircularInt {
        
        
        
-       //friend function
+       //friend function:
        friend ostream& operator<< (ostream& os, const CircularInt& c);//output
        friend istream& operator>> (istream& input,  CircularInt& c);  // (cin)
        
        
-       friend const CircularInt operator-(const int& num, CircularInt& c);
-       friend const CircularInt operator+ (const int& num, CircularInt& c); 
-       friend const CircularInt operator* (const int& num, CircularInt& c);
-       friend const CircularInt operator/ (const int& num, CircularInt& c);
+       friend const CircularInt operator-(const int& num, CircularInt& c);//num-hour
+       friend const CircularInt operator+ (const int& num, CircularInt& c);//num+hour
+       friend const CircularInt operator* (const int& num, CircularInt& c);//num*hourv
+       friend const CircularInt operator/ (const int& num, CircularInt& c);//num/hour
        
        
        
@@ -69,38 +69,25 @@ class CircularInt {
        friend bool operator||(const CircularInt& c1, const CircularInt& c2);//a||b
        
        // int and CircularInt
-       friend bool operator != ( const int& i,const CircularInt& c1);
-       friend bool operator == ( const int& i,const CircularInt& c1);
-       friend bool operator <= ( const int& i,const CircularInt& c1);
-       friend bool operator >= ( const int& i,const CircularInt& c1);
-       friend bool operator < ( const int& i,const CircularInt& c1);
-       friend bool operator > ( const int& i,const CircularInt& c1);
+       friend bool operator != ( const int& i,const CircularInt& c1);//i!=hour
+       friend bool operator == ( const int& i,const CircularInt& c1);//i==hour
+       friend bool operator <= ( const int& i,const CircularInt& c1);//i<=hour
+       friend bool operator >= ( const int& i,const CircularInt& c1);//i>=hour
+       friend bool operator < ( const int& i,const CircularInt& c1);//i<hour
+       friend bool operator > ( const int& i,const CircularInt& c1);//i>hour
        //CircularInt and int 
-       friend bool operator == ( const CircularInt& c1,const int& i);
-       friend bool operator != ( const CircularInt& c1,const int& i);
-       friend bool operator >= ( const CircularInt& c1,const int& i);
-       friend bool operator <= ( const CircularInt& c1,const int& i);
-       friend bool operator > ( const CircularInt& c1,const int& i);
-       friend bool operator < ( const CircularInt& c1,const int& i);
-       
+       friend bool operator == ( const CircularInt& c1,const int& i);//hour==i
+       friend bool operator != ( const CircularInt& c1,const int& i);//hour!=i
+       friend bool operator >= ( const CircularInt& c1,const int& i);//hour>=i
+       friend bool operator <= ( const CircularInt& c1,const int& i);//hour<=i
+       friend bool operator > ( const CircularInt& c1,const int& i);//hour>i
+       friend bool operator < ( const CircularInt& c1,const int& i);//hour<i
 
-       
+   };
 
-       
-   
-      
-     
-
-       
-
-};
- 
-   
-   inline ostream& operator<< (ostream& os, const CircularInt& c) {
+   inline ostream& operator<< (ostream& os, const CircularInt& c) {//(cout)
      int ret=c.cur;
      return os<<to_string(ret);
-    // os << c.cur << endl;
-    // return os;
     }
     inline istream& operator>> (istream& input,  CircularInt& c){ // (cin)
     int x;
@@ -122,20 +109,9 @@ class CircularInt {
        cpy.cur+=d;
    }
    return cpy;
-   
-//   c.cur=num-c.cur;
-//   c.fix();
-//   return c;
    }
-//   inline CircularInt operator-(const int& num, CircularInt& c){// int-hour
-//   c.cur=num-c.cur;
-//   c.fix();
-//   return c;
-//   }
-  inline const CircularInt operator+ (const int& num, CircularInt& c){
-    // c.cur+=num;
-    // c.fix();
-    // return c;
+
+  inline const CircularInt operator+ (const int& num, CircularInt& c){//num+hour
     CircularInt cpy(c);
    int d=(cpy.e-cpy.s)+1;
    cpy.cur=(cpy.cur+num)%d;
@@ -144,10 +120,7 @@ class CircularInt {
    }
    return cpy;
   }
-  inline const CircularInt operator* (const int& num, CircularInt& c){
-    // c.cur*=num;
-    // c.fix();
-    // return c;
+  inline const CircularInt operator* (const int& num, CircularInt& c){//num*hour
     CircularInt cpy(c);
    int d=(cpy.e-cpy.s)+1;
    cpy.cur=(num*cpy.cur)%d;
@@ -156,26 +129,17 @@ class CircularInt {
    }
    return cpy;
   }
-  inline const CircularInt operator/(const int& num, CircularInt& c){
-    // CircularInt cpy(c);
-    // int d=(c.e-c.s)+1;
-    // cpy.cur=(num/cpy.cur)%d;
-    // if (cpy.cur<=0){cpy.cur+=d;}
-    // return cpy;
+  inline const CircularInt operator/(const int& num, CircularInt& c){//num/c
     CircularInt cpy(c);
-            int y, sum =0;
-            y = cpy.e-cpy.s+1;
-            sum = (num/c.cur) % y;
-            if(sum < cpy.s){
-            cpy.cur = sum+y;
-            }
-            else{
-                cpy.cur = sum;
-            }
-                return cpy;
+    int d=(cpy.e-cpy.s)+1;
+    cpy.cur=(num/cpy.cur)%d;
+    if(cpy.cur<cpy.s){
+    cpy.cur+=d;
+    }
+     return cpy;
   }
    
-   
+   //__________________________________________________________________________________________________
    
    
    
