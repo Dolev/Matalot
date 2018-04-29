@@ -135,7 +135,7 @@ CircularInt& CircularInt:: operator *=(int num){
   cpy.fix();
   return cpy;
   }
-  const CircularInt CircularInt::operator-(const int num){//cur/number
+  const CircularInt CircularInt::operator-(const int num){//cur-number
   CircularInt cpy(*this);
   cpy.cur-=num;
   cpy.fix();
@@ -180,7 +180,10 @@ CircularInt& CircularInt:: operator *=(int num){
  
  
 //_______________________________________________________________________
-    CircularInt& CircularInt:: operator=(const CircularInt& c){
+
+
+
+ CircularInt& CircularInt:: operator=(const CircularInt& c){
      e=c.e;
      s=c.s;
      cur=c.cur;
@@ -193,7 +196,7 @@ CircularInt& CircularInt:: operator *=(int num){
      return *this;
     }
  
-
+   
 
 
     
