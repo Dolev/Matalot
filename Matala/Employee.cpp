@@ -2,7 +2,7 @@
 #include "Employee.h"
 #include <string.h>
 #include <assert.h>
-//@auter Dolev Hindy
+//@author Dolev Hindy
 //
 using namespace std;
 Employee::Employee(char a_emp_name[],long a_emp_id, float a_emp_salary)
