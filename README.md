@@ -1,3 +1,4 @@
-Matala2 + Matala4 + Matala5 - CircularInt.cpp
+Matala2 + Matala4 + Matala5
 Ariel University
-@auter Dolev Hindy
+@author Dolev Hindy
+C++ language
