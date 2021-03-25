@@ -1,3 +1,5 @@
-All tasks Ariel University @author Dolev Hindy
+All tasks Ariel University 2021
 
-C++ -progrems
+@author Dolev Hindy
+
+C++ -programing- by Erel Segal
