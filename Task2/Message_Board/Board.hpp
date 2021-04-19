@@ -1,11 +1,10 @@
 #include <iostream>
 #include <stdexcept>
-#include <vector>
+
 #include "Direction.hpp"
 
-#define LEN(arr) ((int) (sizeof (arr) / sizeof (arr)[0]))//for row length and culomn length
-using namespace std;
 
+using namespace std;
 namespace ariel {
 	// Defines a Board constructor
 	class Board {
